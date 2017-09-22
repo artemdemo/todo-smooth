@@ -7,7 +7,7 @@ import { Provider } from 'preact-redux';
 import store from './store';
 
 import AppView from './views/AppView/AppView';
-import MainView from './views/MainView';
+import MainView from './views/MainView/MainView';
 
 Preact.render(
     <Provider store={store}>

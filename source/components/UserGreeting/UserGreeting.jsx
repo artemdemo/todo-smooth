@@ -7,8 +7,8 @@ const UserGreeting = (props) => {
     const { user } = props;
 
     return (
-        <div class='user-greeting'>
-            <div class='user-greeting__hello'>
+        <div className='user-greeting'>
+            <div className='user-greeting__hello'>
                 Hello, {user.name}.
             </div>
             Looks like it's going to be very productive day.

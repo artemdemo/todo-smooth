@@ -25,9 +25,9 @@ class Swiper extends Preact.Component {
             }
         );
 
-        window.requestAnimationFrame(() => this.setState({
+        setTimeout(() => this.setState({
             showOverflow: true,
-        }));
+        }), 50);
     }
 
     getRef(el) {
@@ -42,14 +42,14 @@ class Swiper extends Preact.Component {
         return (
             <div
                 ref={this.getRef.bind(this)}
-                class={swiperClass}
+                className={swiperClass}
             >
                 <div
-                    class='swiper-wrapper'
+                    className='swiper-wrapper'
                 >
                     {props.children.map((item, index) => (
                         <div
-                            class='swiper-slide'
+                            className='swiper-slide'
                             key={`swiper-item-${index}`}
                         >
                             {item}
