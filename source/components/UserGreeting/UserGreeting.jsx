@@ -8,6 +8,7 @@ const UserGreeting = (props) => {
 
     return (
         <div className='user-greeting'>
+            <div className='user-greeting__avatar' />
             <div className='user-greeting__hello'>
                 Hello, {user.name}.
             </div>
