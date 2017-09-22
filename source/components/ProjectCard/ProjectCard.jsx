@@ -7,12 +7,20 @@ import './ProjectCard.less';
 
 class ProjectCard extends Preact.Component {
     render (props) {
-        const { name, tasksAmount, percentDone } = props;
+        const { name, tasksAmount, percentDone, color, icon } = props;
         return (
             <div className='project-card'>
                 <div className='project-card-header'>
-                    <div className='project-card-icon-wrap'>
-                        <Icon className='project-card-icon-wrap__icon' name='briefcase' />
+                    <div
+                        className='project-card-icon-wrap'
+                        style={{
+                            color,
+                        }}
+                    >
+                        <Icon
+                            className='project-card-icon-wrap__icon'
+                            name={icon}
+                        />
                     </div>
                 </div>
                 <div className='project-card__amount'>
@@ -21,7 +29,10 @@ class ProjectCard extends Preact.Component {
                 <div className='project-card__name'>
                     {name}
                 </div>
-                <PercentBar percentAmount={percentDone} />
+                <PercentBar
+                    color={color}
+                    percentAmount={percentDone}
+                />
             </div>
         );
     }
@@ -31,12 +42,16 @@ ProjectCard.propTypes = {
     name: PropTypes.string,
     tasksAmount: PropTypes.number,
     percentDone: PropTypes.number,
+    color: PropTypes.string,
+    icon: PropTypes.string,
 };
 
 ProjectCard.defaultProps = {
     name: '',
     tasksAmount: 0,
     percentDone: 0,
+    color: null,
+    icon: null,
 };
 
 export default ProjectCard;

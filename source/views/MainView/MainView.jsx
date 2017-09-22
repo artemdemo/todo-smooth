@@ -18,12 +18,7 @@ class MainView extends Preact.Component {
     }
 
     render(props) {
-        const { user } = props;
-        const projects = [
-            {id: 0, name: 'Work', percentDone: 0.1},
-            {id: 1, name: 'Personal', percentDone: 0.5},
-            {id: 1, name: 'Vacation', percentDone: 0.9},
-        ];
+        const { user, projects } = props;
         const today = moment();
         return (
             <div>
@@ -34,10 +29,12 @@ class MainView extends Preact.Component {
                         Today: {today.format('MMMM, DD YYYY')}
                     </div>
                     <Swiper>
-                        {projects.map(project => (
+                        {projects.data.map(project => (
                             <ProjectCard
+                                color={project.color}
                                 name={project.name}
                                 percentDone={project.percentDone}
+                                icon={project.icon}
                             />
                         ))}
                     </Swiper>
@@ -49,6 +46,7 @@ class MainView extends Preact.Component {
 
 export default connect(
     state => ({
+        projects: state.projects,
         user: state.user,
     }),
 )(MainView);

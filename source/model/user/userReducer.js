@@ -1,6 +1,6 @@
 const initState = {
     data: {
-        name: 'Alex',
+        name: 'Art',
     },
 };
 
