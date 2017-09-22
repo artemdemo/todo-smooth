@@ -5,16 +5,30 @@ import Swiper from '../../components/Swiper/Swiper';
 import MainMenu from '../../components/MainMenu/MainMenu';
 import ProjectCard from '../../components/ProjectCard/ProjectCard';
 import UserGreeting from '../../components/UserGreeting/UserGreeting';
+import { setActiveProjectId } from '../../model/projects/projectsActions';
 
 import './MainView.less';
 
 class MainView extends Preact.Component {
     componentWillMount() {
-        console.log(this.props);
+        const { projects } = this.props;
+        if (projects.data.length > 0) {
+            this.projectChanged(0);
+        }
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
+        if (this.props.projects.data !== nextProps.projects.data) {
+            this.projectChanged(0);
+        }
+    }
+
+    projectChanged(listId) {
+        const { projects, setActiveProjectId } = this.props;
+        const project = projects.data[listId];
+        if (project) {
+            setActiveProjectId(project.id);
+        }
     }
 
     render(props) {
@@ -28,7 +42,9 @@ class MainView extends Preact.Component {
                     <div className='main-view-projects__date'>
                         Today: {today.format('MMMM, DD YYYY')}
                     </div>
-                    <Swiper>
+                    <Swiper
+                        onChangeProject={this.projectChanged.bind(this)}
+                    >
                         {projects.data.map(project => (
                             <ProjectCard
                                 color={project.color}
@@ -48,5 +64,7 @@ export default connect(
     state => ({
         projects: state.projects,
         user: state.user,
-    }),
+    }), {
+        setActiveProjectId,
+    },
 )(MainView);

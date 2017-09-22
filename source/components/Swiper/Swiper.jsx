@@ -1,6 +1,7 @@
 import Preact from 'preact';
 import SwiperPkg from 'swiper';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 
 import './Swiper.less';
 
@@ -34,6 +35,13 @@ class Swiper extends Preact.Component {
         this.swiperEl = el;
     }
 
+    touchEnd() {
+        const { onChangeProject } = this.props;
+        setTimeout(() => {
+            onChangeProject && onChangeProject(this.swiper.activeIndex);
+        }, 50);
+    }
+
     render(props, state) {
         const swiperClass = classnames({
             'swiper-container': true,
@@ -43,6 +51,7 @@ class Swiper extends Preact.Component {
             <div
                 ref={this.getRef.bind(this)}
                 className={swiperClass}
+                onTouchEnd={this.touchEnd.bind(this)}
             >
                 <div
                     className='swiper-wrapper'
@@ -60,5 +69,13 @@ class Swiper extends Preact.Component {
         );
     }
 }
+
+Swiper.propTypes = {
+    onChangeProject: PropTypes.func,
+};
+
+Swiper.defaultProps = {
+    onChangeProject: null,
+};
 
 export default Swiper;

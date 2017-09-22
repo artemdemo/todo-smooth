@@ -1,0 +1,1 @@
+export const SET_ACTIVE_PROJECT_ID = Symbol('SET_ACTIVE_PROJECT_ID');

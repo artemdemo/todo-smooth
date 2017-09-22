@@ -1,3 +1,5 @@
+import * as projectConst from './projectsConst';
+
 const initState = {
     data: [
         {
@@ -22,11 +24,15 @@ const initState = {
             icon: 'sun-o',
         },
     ],
-    activeProject: null,
+    activeProjectId: null,
 };
 
 export default function projectReducer(state = initState, action) {
     switch (action.type) {
+        case projectConst.SET_ACTIVE_PROJECT_ID:
+            return Object.assign({}, state, {
+                activeProjectId: action.id,
+            });
         default:
             return state;
     }
