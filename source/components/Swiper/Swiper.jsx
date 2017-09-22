@@ -1,8 +1,9 @@
-import { h, Component } from 'preact';
+import Preact from 'preact';
 import SwiperPkg from 'swiper';
-import 'swiper/dist/css/swiper.min.css';
 
-class Swiper extends Component {
+import './Swiper.less';
+
+class Swiper extends Preact.Component {
     constructor(props) {
         super(props);
 
@@ -13,7 +14,11 @@ class Swiper extends Component {
     componentDidMount() {
         this.swiper = new SwiperPkg(
             this.swiperEl,
-            {}
+            {
+                slidesPerView: 'auto',
+                centeredSlides: true,
+                spaceBetween: 30,
+            }
         );
     }
 

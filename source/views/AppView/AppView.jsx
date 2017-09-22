@@ -1,6 +1,8 @@
-import { h, Component } from 'preact';
+import Preact from 'preact';
 
-class AppView extends Component {
+import './AppView.less';
+
+class AppView extends Preact.Component {
     render(props) {
         return (
             <div>

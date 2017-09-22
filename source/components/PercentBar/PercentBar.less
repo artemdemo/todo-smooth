@@ -1,0 +1,19 @@
+@import '../../styles/colors';
+
+.percent-bar {
+    display: flex;
+}
+
+.percent-bar-scale {
+    flex-grow: 1;
+    height: 5px;
+    border-radius: 3px;
+    background-color: lighten(@text-color, 60%);
+    margin-right: 10px;
+    margin-top: 5px;
+}
+    .percent-bar-scale__fill {
+        background-color: @main-blue;
+        height: 5px;
+        border-radius: 3px;
+    }

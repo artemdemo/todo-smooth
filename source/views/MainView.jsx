@@ -1,7 +1,8 @@
-import { h, Component } from 'preact';
+import Preact from 'preact';
 import Swiper from '../components/Swiper/Swiper';
+import ProjectCard from '../components/ProjectCard/ProjectCard';
 
-class MainView extends Component {
+class MainView extends Preact.Component {
     componentWillMount() {
         console.log(this.props);
     }
@@ -11,11 +12,19 @@ class MainView extends Component {
     }
 
     render() {
+        const projects = [
+            {id: 0, name: 'Work', percentDone: 0.1},
+            {id: 1, name: 'Personal', percentDone: 0.5},
+            {id: 1, name: 'Vacation', percentDone: 0.9},
+        ];
         return (
             <Swiper>
-                <span>Slide #01</span>
-                <span>Slide #02</span>
-                <span>Slide #03</span>
+                {projects.map(project => (
+                    <ProjectCard
+                        name={project.name}
+                        percentDone={project.percentDone}
+                    />
+                ))}
             </Swiper>
         );
     }
