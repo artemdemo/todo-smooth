@@ -1,34 +1,25 @@
 import Preact from 'preact';
 import PropTypes from 'prop-types';
 import PercentBar from '../PercentBar/PercentBar';
-import Icon from '../Icon/Icon';
+import ProjectIcon from '../ProjectIcon/ProjectIcon';
+import ProjectTitle from '../ProjectTitle/ProjectTitle';
 
 import './ProjectCard.less';
 
 class ProjectCard extends Preact.Component {
-    render (props) {
+    render(props) {
         const { name, tasksAmount, percentDone, color, icon } = props;
         return (
             <div className='project-card'>
                 <div className='project-card-header'>
-                    <div
-                        className='project-card-icon-wrap'
-                        style={{
-                            color,
-                        }}
-                    >
-                        <Icon
-                            className='project-card-icon-wrap__icon'
-                            name={icon}
-                        />
-                    </div>
+                    <ProjectIcon
+                        color={color}
+                        icon={icon}
+                    />
                 </div>
-                <div className='project-card__amount'>
-                    {tasksAmount} tasks
-                </div>
-                <div className='project-card__name'>
+                <ProjectTitle tasksAmount={tasksAmount}>
                     {name}
-                </div>
+                </ProjectTitle>
                 <PercentBar
                     color={color}
                     percentAmount={percentDone}

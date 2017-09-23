@@ -36,10 +36,15 @@ class Swiper extends Preact.Component {
     }
 
     touchEnd() {
-        const { onChangeProject } = this.props;
+        const { onChange } = this.props;
         setTimeout(() => {
-            onChangeProject && onChangeProject(this.swiper.activeIndex);
+            onChange && onChange(this.swiper.activeIndex);
         }, 50);
+    }
+
+    projectClick() {
+        const { onClick } = this.props;
+        onClick && onClick(this.swiper.activeIndex, this.swiper.slides[this.swiper.activeIndex]);
     }
 
     render(props, state) {
@@ -52,6 +57,7 @@ class Swiper extends Preact.Component {
                 ref={this.getRef.bind(this)}
                 className={swiperClass}
                 onTouchEnd={this.touchEnd.bind(this)}
+                onMouseUp={this.touchEnd.bind(this)}
             >
                 <div
                     className='swiper-wrapper'
@@ -59,6 +65,7 @@ class Swiper extends Preact.Component {
                     {props.children.map((item, index) => (
                         <div
                             className='swiper-slide'
+                            onClick={this.projectClick.bind(this)}
                             key={`swiper-item-${index}`}
                         >
                             {item}
@@ -71,11 +78,13 @@ class Swiper extends Preact.Component {
 }
 
 Swiper.propTypes = {
-    onChangeProject: PropTypes.func,
+    onChange: PropTypes.func,
+    onClick: PropTypes.func,
 };
 
 Swiper.defaultProps = {
-    onChangeProject: null,
+    onChange: null,
+    onClick: null,
 };
 
 export default Swiper;

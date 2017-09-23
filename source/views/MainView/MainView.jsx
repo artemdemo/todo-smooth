@@ -5,11 +5,21 @@ import Swiper from '../../components/Swiper/Swiper';
 import MainMenu from '../../components/MainMenu/MainMenu';
 import ProjectCard from '../../components/ProjectCard/ProjectCard';
 import UserGreeting from '../../components/UserGreeting/UserGreeting';
+import ProjectModal from '../../components/ProjectModal/ProjectModal';
 import { setActiveProjectId } from '../../model/projects/projectsActions';
 
 import './MainView.less';
 
 class MainView extends Preact.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            project: null,
+            projectEl: null,
+        };
+    }
+
     componentWillMount() {
         const { projects } = this.props;
         if (projects.data.length > 0) {
@@ -31,6 +41,15 @@ class MainView extends Preact.Component {
         }
     }
 
+    openProject(listId, projectEl) {
+        const { projects } = this.props;
+        const project = projects.data[listId];
+        this.setState({
+            project,
+            projectEl,
+        });
+    }
+
     render(props) {
         const { user, projects } = props;
         const today = moment();
@@ -43,7 +62,8 @@ class MainView extends Preact.Component {
                         Today: {today.format('MMMM, DD YYYY')}
                     </div>
                     <Swiper
-                        onChangeProject={this.projectChanged.bind(this)}
+                        onChange={this.projectChanged.bind(this)}
+                        onClick={this.openProject.bind(this)}
                     >
                         {projects.data.map(project => (
                             <ProjectCard
@@ -55,6 +75,10 @@ class MainView extends Preact.Component {
                         ))}
                     </Swiper>
                 </div>
+                <ProjectModal
+                    project={this.state.project}
+                    projectEl={this.state.projectEl}
+                />
             </div>
         );
     }
