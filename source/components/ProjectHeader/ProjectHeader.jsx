@@ -6,26 +6,32 @@ import ProjectTitle from '../ProjectTitle/ProjectTitle';
 
 import './ProjectHeader.less';
 
-const ProjectHeader = (props) => {
-    const { name, tasksAmount, percentDone, color, icon } = props;
-    return (
-        <div className='project-header'>
-            <div className='project-card-header'>
-                <ProjectIcon
+class ProjectHeader extends Preact.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render(props) {
+        const { name, tasksAmount, percentDone, color, icon } = props;
+        return (
+            <div className='project-header'>
+                <div className='project-card-header'>
+                    <ProjectIcon
+                        color={color}
+                        icon={icon}
+                    />
+                </div>
+                <ProjectTitle tasksAmount={tasksAmount}>
+                    {name}
+                </ProjectTitle>
+                <PercentBar
                     color={color}
-                    icon={icon}
+                    percentAmount={percentDone}
                 />
             </div>
-            <ProjectTitle tasksAmount={tasksAmount}>
-                {name}
-            </ProjectTitle>
-            <PercentBar
-                color={color}
-                percentAmount={percentDone}
-            />
-        </div>
-    );
-};
+        );
+    }
+}
 
 ProjectHeader.propTypes = {
     name: PropTypes.string,
@@ -33,6 +39,7 @@ ProjectHeader.propTypes = {
     percentDone: PropTypes.number,
     color: PropTypes.string,
     icon: PropTypes.string,
+    open: PropTypes.bool,
 };
 
 ProjectHeader.defaultProps = {
@@ -41,6 +48,7 @@ ProjectHeader.defaultProps = {
     percentDone: 0,
     color: null,
     icon: null,
+    open: false,
 };
 
 export default ProjectHeader;

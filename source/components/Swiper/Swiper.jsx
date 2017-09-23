@@ -2,6 +2,7 @@ import Preact from 'preact';
 import SwiperPkg from 'swiper';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import Card from '../../components/Card/Card';
 
 import './Swiper.less';
 
@@ -68,7 +69,9 @@ class Swiper extends Preact.Component {
                             onClick={this.projectClick.bind(this)}
                             key={`swiper-item-${index}`}
                         >
-                            {item}
+                            <Card>
+                                {item}
+                            </Card>
                         </div>
                     ))}
                 </div>
