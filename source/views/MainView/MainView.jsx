@@ -9,11 +9,20 @@ import ProjectModal from '../../components/ProjectModal/ProjectModal';
 import {
     setCurrentProjectId,
     setCurrentProjectRect,
+    toggleProjectModal,
 } from '../../model/currentProject/currentProjectActions';
 
 import './MainView.less';
 
 class MainView extends Preact.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            project: {},
+        };
+    }
+
     componentWillMount() {
         const { projects } = this.props;
         if (projects.data.length > 0) {
@@ -36,8 +45,13 @@ class MainView extends Preact.Component {
     }
 
     openProject(listId, projectEl) {
-        const { setCurrentProjectRect } = this.props;
+        const { projects, setCurrentProjectRect, toggleProjectModal } = this.props;
         setCurrentProjectRect(projectEl.getBoundingClientRect());
+        this.setState({
+            project: projects.data[listId],
+        }, () => {
+            toggleProjectModal();
+        });
     }
 
     render(props) {
@@ -59,7 +73,7 @@ class MainView extends Preact.Component {
                             <ProjectHeader
                                 color={project.color}
                                 name={project.name}
-                                percentDone={project.percentDone}
+                                percentDone={0.1}
                                 icon={project.icon}
                                 key={`main-view-swiper-item-${index}`}
                             />
@@ -69,6 +83,7 @@ class MainView extends Preact.Component {
                 <ProjectModal
                     project={this.state.project}
                     rect={currentProject.rect}
+                    open={currentProject.open}
                 />
             </div>
         );
@@ -83,5 +98,6 @@ export default connect(
     }), {
         setCurrentProjectId,
         setCurrentProjectRect,
+        toggleProjectModal,
     },
 )(MainView);

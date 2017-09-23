@@ -3,6 +3,7 @@ import * as currentProjectConst from './currentProjectConst';
 const initState = {
     projectId: null,
     rect: {},
+    open: false,
 };
 
 export default function (state = initState, action) {
@@ -18,6 +19,10 @@ export default function (state = initState, action) {
             });
         case currentProjectConst.CLEAR_CURRENT_PROJECT:
             return Object.assign({}, state, initState);
+        case currentProjectConst.TOGGLE_PROJECT_MODAL:
+            return Object.assign({}, state, {
+                open: action.open !== undefined ? open : !state.open,
+            });
         default:
             return state;
     }

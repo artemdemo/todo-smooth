@@ -19,3 +19,10 @@ export function clearCurrentProject() {
         type: currentProjectConst.CLEAR_CURRENT_PROJECT,
     };
 }
+
+export function toggleProjectModal(open) {
+    return {
+        type: currentProjectConst.TOGGLE_PROJECT_MODAL,
+        open,
+    }
+}
