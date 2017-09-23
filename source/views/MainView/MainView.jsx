@@ -3,8 +3,9 @@ import { connect } from 'preact-redux';
 import moment from 'moment';
 import Swiper from '../../components/Swiper/Swiper';
 import MainMenu from '../../components/MainMenu/MainMenu';
-import ProjectCard from '../../components/ProjectCard/ProjectCard';
+import Card from '../../components/Card/Card';
 import UserGreeting from '../../components/UserGreeting/UserGreeting';
+import ProjectHeader from '../../components/ProjectHeader/ProjectHeader';
 import ProjectModal from '../../components/ProjectModal/ProjectModal';
 import { setActiveProjectId } from '../../model/projects/projectsActions';
 
@@ -65,13 +66,15 @@ class MainView extends Preact.Component {
                         onChange={this.projectChanged.bind(this)}
                         onClick={this.openProject.bind(this)}
                     >
-                        {projects.data.map(project => (
-                            <ProjectCard
-                                color={project.color}
-                                name={project.name}
-                                percentDone={project.percentDone}
-                                icon={project.icon}
-                            />
+                        {projects.data.map((project, index) => (
+                            <Card key={`main-view-swiper-item-${index}`}>
+                                <ProjectHeader
+                                    color={project.color}
+                                    name={project.name}
+                                    percentDone={project.percentDone}
+                                    icon={project.icon}
+                                />
+                            </Card>
                         ))}
                     </Swiper>
                 </div>
