@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import ProjectHeader from '../ProjectHeader/ProjectHeader';
 import ModalMenu from './ModalMenu/ModalMenu';
+import ProjectTasks from '../ProjectTasks/ProjectTasks';
 
 import './ProjectModal.less';
 
@@ -115,8 +116,11 @@ class ProjectModal extends Preact.Component {
                         name={project.name}
                         percentDone={0.1}
                         icon={project.icon}
-                        tasksAmount={10}
+                        tasksAmount={10000}
                         open={this.state.open}
+                    />
+                    <ProjectTasks
+                        project={project}
                     />
                 </div>
             </div>

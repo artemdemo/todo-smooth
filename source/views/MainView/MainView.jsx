@@ -60,7 +60,7 @@ class MainView extends Preact.Component {
     }
 
     render(props) {
-        const { user, projects, currentProject } = props;
+        const { user, projects, tasks, currentProject } = props;
         const today = moment();
         return (
             <div>
@@ -74,15 +74,25 @@ class MainView extends Preact.Component {
                         onChange={this.projectChanged.bind(this)}
                         onClick={this.openModal.bind(this)}
                     >
-                        {projects.data.map((project, index) => (
-                            <ProjectHeader
-                                color={project.color}
-                                name={project.name}
-                                percentDone={0.1}
-                                icon={project.icon}
-                                key={`main-view-swiper-item-${index}`}
-                            />
-                        ))}
+                        {projects.data.map((project, index) => {
+                            const doneAmount = tasks.data.reduce((acc, task) => {
+                                if (project.tasks.includes(task.id) && task.done) {
+                                    return acc + 1;
+                                }
+                                return acc;
+                            }, 0);
+                            const percentDone = project.tasks.length === 0 ? 0 : doneAmount / project.tasks.length;
+                            return (
+                                <ProjectHeader
+                                    tasksAmount={project.tasks.length - doneAmount}
+                                    color={project.color}
+                                    name={project.name}
+                                    percentDone={percentDone}
+                                    icon={project.icon}
+                                    key={`main-view-swiper-item-${index}`}
+                                />
+                            )
+                        })}
                     </Swiper>
                 </div>
                 <ProjectModal
@@ -100,6 +110,7 @@ export default connect(
     state => ({
         currentProject: state.currentProject,
         projects: state.projects,
+        tasks: state.tasks,
         user: state.user,
     }), {
         setCurrentProjectId,
