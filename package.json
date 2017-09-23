@@ -41,7 +41,6 @@
     "moment": "^2.18.1",
     "preact": "^8.2.5",
     "preact-redux": "^2.0.2",
-    "preact-router": "^2.5.7",
     "prop-types": "^15.5.10",
     "redux": "^3.7.2",
     "reselect": "^3.0.1",

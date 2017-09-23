@@ -19,9 +19,8 @@ class ProjectModal extends Preact.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this.props.projectEl !== nextProps.projectEl) {
-            const { projectEl } = nextProps;
-            const rect = projectEl.getBoundingClientRect();
+        if (this.props.rect !== nextProps.rect) {
+            const { rect } = nextProps;
             this.setState({
                 top: rect.top,
                 left: rect.left,
@@ -68,12 +67,12 @@ class ProjectModal extends Preact.Component {
 
 ProjectModal.propTypes = {
     project: PropTypes.shape({}),
-    projectEl: PropTypes.element,
+    rect: PropTypes.shape({}),
 };
 
 ProjectModal.defaultProps = {
     project: null,
-    projectEl: null,
+    rect: null,
 };
 
 export default ProjectModal;

@@ -6,20 +6,14 @@ import MainMenu from '../../components/MainMenu/MainMenu';
 import UserGreeting from '../../components/UserGreeting/UserGreeting';
 import ProjectHeader from '../../components/ProjectHeader/ProjectHeader';
 import ProjectModal from '../../components/ProjectModal/ProjectModal';
-import { setActiveProjectId } from '../../model/projects/projectsActions';
+import {
+    setCurrentProjectId,
+    setCurrentProjectRect,
+} from '../../model/currentProject/currentProjectActions';
 
 import './MainView.less';
 
 class MainView extends Preact.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            project: null,
-            projectEl: null,
-        };
-    }
-
     componentWillMount() {
         const { projects } = this.props;
         if (projects.data.length > 0) {
@@ -34,24 +28,20 @@ class MainView extends Preact.Component {
     }
 
     projectChanged(listId) {
-        const { projects, setActiveProjectId } = this.props;
+        const { projects, setCurrentProjectId } = this.props;
         const project = projects.data[listId];
         if (project) {
-            setActiveProjectId(project.id);
+            setCurrentProjectId(project.id);
         }
     }
 
     openProject(listId, projectEl) {
-        const { projects } = this.props;
-        const project = projects.data[listId];
-        this.setState({
-            project,
-            projectEl,
-        });
+        const { setCurrentProjectRect } = this.props;
+        setCurrentProjectRect(projectEl.getBoundingClientRect());
     }
 
     render(props) {
-        const { user, projects } = props;
+        const { user, projects, currentProject } = props;
         const today = moment();
         return (
             <div>
@@ -78,7 +68,7 @@ class MainView extends Preact.Component {
                 </div>
                 <ProjectModal
                     project={this.state.project}
-                    projectEl={this.state.projectEl}
+                    rect={currentProject.rect}
                 />
             </div>
         );
@@ -87,9 +77,11 @@ class MainView extends Preact.Component {
 
 export default connect(
     state => ({
+        currentProject: state.currentProject,
         projects: state.projects,
         user: state.user,
     }), {
-        setActiveProjectId,
+        setCurrentProjectId,
+        setCurrentProjectRect,
     },
 )(MainView);

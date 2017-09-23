@@ -1,5 +1,4 @@
 import 'babel-polyfill';
-import Router from 'preact-router';
 import Preact from 'preact';
 import { Provider } from 'preact-redux';
 
@@ -12,9 +11,7 @@ import MainView from './views/MainView/MainView';
 Preact.render(
     <Provider store={store}>
         <AppView>
-            <Router>
-                <MainView path='/:group?/:id?' />
-            </Router>
+            <MainView />
         </AppView>
     </Provider>,
     document.getElementById('app')

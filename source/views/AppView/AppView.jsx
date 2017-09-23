@@ -7,10 +7,11 @@ import './AppView.less';
 
 const projectSelector = createSelector(
     props => props.projects,
-    (projects) => {
-        if (projects.activeProjectId !== null) {
+    props => props.currentProject,
+    (projects, currentProject) => {
+        if (currentProject.projectId !== null) {
             for (const project of projects.data) {
-                if (project.id === projects.activeProjectId) {
+                if (project.id === currentProject.projectId) {
                     return project;
                 }
             }
@@ -21,7 +22,7 @@ const projectSelector = createSelector(
 
 class AppView extends Preact.Component {
     componentWillReceiveProps(nextProps) {
-        if (this.props.projects !== nextProps.projects) {
+        if (this.props.currentProject !== nextProps.currentProject) {
             const project = projectSelector(nextProps);
             const color = Color(project.color);
             document.body.style.backgroundColor = project ? color.lighten(0.1).hex() : null;
@@ -40,5 +41,6 @@ class AppView extends Preact.Component {
 export default connect(
     state => ({
         projects: state.projects,
+        currentProject: state.currentProject,
     }),
 )(AppView);
