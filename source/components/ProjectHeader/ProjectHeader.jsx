@@ -1,5 +1,6 @@
 import Preact from 'preact';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import PercentBar from '../PercentBar/PercentBar';
 import ProjectIcon from '../ProjectIcon/ProjectIcon';
 import ProjectTitle from '../ProjectTitle/ProjectTitle';
@@ -12,10 +13,14 @@ class ProjectHeader extends Preact.Component {
     }
 
     render(props) {
-        const { name, tasksAmount, percentDone, color, icon } = props;
+        const { name, tasksAmount, percentDone, color, icon, open } = props;
+        const iconClass = classnames({
+            'project-header-icon': true,
+            'project-header-icon_open': open,
+        });
         return (
-            <div className='project-header'>
-                <div className='project-card-header'>
+            <div>
+                <div className={iconClass}>
                     <ProjectIcon
                         color={color}
                         icon={icon}

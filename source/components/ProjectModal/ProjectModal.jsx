@@ -2,6 +2,7 @@ import Preact from 'preact';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import ProjectHeader from '../ProjectHeader/ProjectHeader';
+import ModalMenu from './ModalMenu/ModalMenu';
 
 import './ProjectModal.less';
 
@@ -10,12 +11,12 @@ class ProjectModal extends Preact.Component {
         super(props);
 
         this.state = {
+            open: false,
             animation: false,
             top: null,
             left: null,
             width: null,
             height: null,
-            borderRadius: null,
         };
 
         this.isClosing = false;
@@ -44,19 +45,20 @@ class ProjectModal extends Preact.Component {
                 animation: true,
             }, () => {
                 this.setState({
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    borderRadius: 0,
+                    open: true,
+                    top: null,
+                    left: null,
+                    width: null,
+                    height: null,
                 });
             });
         });
     }
 
-    closeModal(props) {
+    closeModal(props = this.props) {
         const { rect } = props;
         this.setState({
+            open: false,
             top: rect.top,
             left: rect.left,
             width: rect.width,
@@ -69,9 +71,19 @@ class ProjectModal extends Preact.Component {
         if (this.isClosing) {
             this.setState({
                 animation: false,
+                open: false,
+                top: null,
+                left: null,
+                width: null,
+                height: null,
             });
             this.isClosing = false;
         }
+    }
+
+    sendCloseAction() {
+        const { onClose } = this.props;
+        onClose && onClose();
     }
 
     render(props) {
@@ -79,6 +91,7 @@ class ProjectModal extends Preact.Component {
         const modalClass = classnames({
             'project-modal': true,
             'project-modal_animation': this.state.animation,
+            'project-modal_open': this.state.open,
         });
         return (
             <div
@@ -90,16 +103,22 @@ class ProjectModal extends Preact.Component {
                     height: this.state.height,
                     borderRadius: this.state.borderRadius,
                 }}
-
                 onTransitionEnd={this.transitionEnded.bind(this)}
             >
-                <ProjectHeader
-                    color={project.color}
-                    name={project.name}
-                    percentDone={0.1}
-                    icon={project.icon}
-                    tasksAmount={10}
+                <ModalMenu
+                    open={this.state.open}
+                    onLeftClick={this.sendCloseAction.bind(this)}
                 />
+                <div className='project-modal__content'>
+                    <ProjectHeader
+                        color={project.color}
+                        name={project.name}
+                        percentDone={0.1}
+                        icon={project.icon}
+                        tasksAmount={10}
+                        open={this.state.open}
+                    />
+                </div>
             </div>
         );
     }
@@ -108,11 +127,15 @@ class ProjectModal extends Preact.Component {
 ProjectModal.propTypes = {
     project: PropTypes.shape({}),
     rect: PropTypes.shape({}),
+    open: PropTypes.bool,
+    onClose: PropTypes.func,
 };
 
 ProjectModal.defaultProps = {
     project: {},
     rect: null,
+    open: false,
+    onClose: null,
 };
 
 export default ProjectModal;

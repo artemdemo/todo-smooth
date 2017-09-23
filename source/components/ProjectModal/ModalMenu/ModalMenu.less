@@ -1,0 +1,25 @@
+@import '../../../styles/colors';
+@import '../../../styles/variables';
+
+.modal-menu {
+    display: flex;
+    margin: 0;
+    color: @text-color_muted;
+    transition: @transition-duration;
+    transform: scaleY(0);
+    transform-origin: top;
+    height: 0;
+}
+    .modal-menu_open {
+        transform: scaleY(1);
+        margin: 15px 0;
+        height: initial;
+    }
+    .modal-menu__left,
+    .modal-menu__right {
+        padding: 0 15px;
+    }
+    .modal-menu__center {
+        flex-grow: 1;
+        text-align: center;
+    }

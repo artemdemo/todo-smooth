@@ -44,7 +44,7 @@ class MainView extends Preact.Component {
         }
     }
 
-    openProject(listId, projectEl) {
+    openModal(listId, projectEl) {
         const { projects, setCurrentProjectRect, toggleProjectModal } = this.props;
         setCurrentProjectRect(projectEl.getBoundingClientRect());
         this.setState({
@@ -52,6 +52,11 @@ class MainView extends Preact.Component {
         }, () => {
             toggleProjectModal();
         });
+    }
+
+    closeModal() {
+        const { toggleProjectModal } = this.props;
+        toggleProjectModal(false);
     }
 
     render(props) {
@@ -67,7 +72,7 @@ class MainView extends Preact.Component {
                     </div>
                     <Swiper
                         onChange={this.projectChanged.bind(this)}
-                        onClick={this.openProject.bind(this)}
+                        onClick={this.openModal.bind(this)}
                     >
                         {projects.data.map((project, index) => (
                             <ProjectHeader
@@ -84,6 +89,7 @@ class MainView extends Preact.Component {
                     project={this.state.project}
                     rect={currentProject.rect}
                     open={currentProject.open}
+                    onClose={this.closeModal.bind(this)}
                 />
             </div>
         );
