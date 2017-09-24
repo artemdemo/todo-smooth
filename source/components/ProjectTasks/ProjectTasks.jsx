@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 class ProjectTasks extends Preact.Component {
     render(props) {
         const { project } = props;
-        console.log(project.tasks);
         return (
             <div className='project-tasks'>
 

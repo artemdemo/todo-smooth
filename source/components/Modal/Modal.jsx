@@ -1,13 +1,11 @@
 import Preact from 'preact';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import ProjectHeader from '../ProjectHeader/ProjectHeader';
 import ModalMenu from './ModalMenu/ModalMenu';
-import ProjectTasks from '../ProjectTasks/ProjectTasks';
 
-import './ProjectModal.less';
+import './Modal.less';
 
-class ProjectModal extends Preact.Component {
+class Modal extends Preact.Component {
     constructor(props) {
         super(props);
 
@@ -88,11 +86,10 @@ class ProjectModal extends Preact.Component {
     }
 
     render(props) {
-        const { project } = props;
         const modalClass = classnames({
-            'project-modal': true,
-            'project-modal_animation': this.state.animation,
-            'project-modal_open': this.state.open,
+            'modal': true,
+            'modal_animation': this.state.animation,
+            'modal_open': this.state.open,
         });
         return (
             <div
@@ -110,36 +107,29 @@ class ProjectModal extends Preact.Component {
                     open={this.state.open}
                     onLeftClick={this.sendCloseAction.bind(this)}
                 />
-                <div className='project-modal__content'>
-                    <ProjectHeader
-                        color={project.color}
-                        name={project.name}
-                        percentDone={0.1}
-                        icon={project.icon}
-                        tasksAmount={10000}
-                        open={this.state.open}
-                    />
-                    <ProjectTasks
-                        project={project}
-                    />
+                <div className='modal__content'>
+                    {props.children}
                 </div>
             </div>
         );
     }
 }
 
-ProjectModal.propTypes = {
-    project: PropTypes.shape({}),
-    rect: PropTypes.shape({}),
+Modal.propTypes = {
+    rect: PropTypes.shape({
+        top: PropTypes.number,
+        left: PropTypes.number,
+        width: PropTypes.number,
+        height: PropTypes.number,
+    }),
     open: PropTypes.bool,
     onClose: PropTypes.func,
 };
 
-ProjectModal.defaultProps = {
-    project: {},
+Modal.defaultProps = {
     rect: null,
     open: false,
     onClose: null,
 };
 
-export default ProjectModal;
+export default Modal;

@@ -2,7 +2,6 @@ import 'babel-polyfill';
 import Preact from 'preact';
 import { Provider } from 'preact-redux';
 
-// import history from './history';
 import store from './store';
 
 import AppView from './views/AppView/AppView';

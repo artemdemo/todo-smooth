@@ -5,12 +5,13 @@ import Swiper from '../../components/Swiper/Swiper';
 import MainMenu from '../../components/MainMenu/MainMenu';
 import UserGreeting from '../../components/UserGreeting/UserGreeting';
 import ProjectHeader from '../../components/ProjectHeader/ProjectHeader';
-import ProjectModal from '../../components/ProjectModal/ProjectModal';
+import Modal from '../../components/Modal/Modal';
 import {
     setCurrentProjectId,
     setCurrentProjectRect,
     toggleProjectModal,
 } from '../../model/currentProject/currentProjectActions';
+import Project from '../../containers/Project/Project';
 
 import './MainView.less';
 
@@ -95,12 +96,13 @@ class MainView extends Preact.Component {
                         })}
                     </Swiper>
                 </div>
-                <ProjectModal
-                    project={this.state.project}
+                <Modal
                     rect={currentProject.rect}
                     open={currentProject.open}
                     onClose={this.closeModal.bind(this)}
-                />
+                >
+                    <Project />
+                </Modal>
             </div>
         );
     }
