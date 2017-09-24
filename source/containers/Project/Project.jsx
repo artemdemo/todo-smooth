@@ -1,9 +1,8 @@
 import Preact from 'preact';
-import PropTypes from 'prop-types';
 import { connect } from 'preact-redux';
 import { createSelector } from 'reselect';
 import ProjectHeader from '../../components/ProjectHeader/ProjectHeader';
-import ProjectTasks from '../../components/ProjectTasks/ProjectTasks';
+import ProjectTasks from '../ProjectTasks/ProjectTasks';
 
 const projectSelector = createSelector(
     props => props.currentProject,
