@@ -1,21 +1,23 @@
 import Preact from 'preact';
 import Icon from '../Icon/Icon';
+import TriptychGrid from '../TriptychGrid/TriptychGrid';
+import TriptychGridItem from '../TriptychGridItem/TriptychGridItem';
 
 import './MainMenu.less';
 
 const MainMenu = () => {
     return (
-        <div className='main-menu'>
-            <div className='main-menu__left'>
+        <TriptychGrid className='main-menu'>
+            <TriptychGridItem padded>
                 <Icon name='bars' />
-            </div>
-            <div className='main-menu__center'>
+            </TriptychGridItem>
+            <TriptychGridItem centered>
                 TODO
-            </div>
-            <div className='main-menu__right'>
+            </TriptychGridItem>
+            <TriptychGridItem padded>
                 <Icon name='search' />
-            </div>
-        </div>
+            </TriptychGridItem>
+        </TriptychGrid>
     );
 };
 

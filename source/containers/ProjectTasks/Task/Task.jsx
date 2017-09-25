@@ -2,6 +2,8 @@ import Preact from 'preact';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Icon from '../../../components/Icon/Icon';
+import TriptychGrid from '../../../components/TriptychGrid/TriptychGrid';
+import TriptychGridItem from '../../../components/TriptychGridItem/TriptychGridItem';
 
 import './Task.less';
 
@@ -17,12 +19,19 @@ class Task extends Preact.Component {
             'task__name_checked': task.done,
         });
         return (
-            <div className='task'>
-                <div className={checkboxClass} />
-                <span className={nameClass}>
-                    {task.name}
-                </span>
-            </div>
+            <TriptychGrid className='task'>
+                <TriptychGridItem>
+                    <div className={checkboxClass} />
+                </TriptychGridItem>
+                <TriptychGridItem>
+                    <span className={nameClass}>
+                        {task.name}
+                    </span>
+                </TriptychGridItem>
+                <TriptychGridItem>
+                    &nbsp;
+                </TriptychGridItem>
+            </TriptychGrid>
         );
     }
 }

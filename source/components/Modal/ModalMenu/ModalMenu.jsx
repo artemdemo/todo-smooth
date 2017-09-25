@@ -2,6 +2,8 @@ import Preact from 'preact';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import Icon from '../../Icon/Icon';
+import TriptychGrid from '../../TriptychGrid/TriptychGrid';
+import TriptychGridItem from '../../TriptychGridItem/TriptychGridItem';
 
 import './ModalMenu.less';
 
@@ -18,20 +20,19 @@ const ModalMenu = (props) => {
     };
 
     return (
-        <div className={menuClass}>
-            <div
-                className='modal-menu__left'
-                onClick={leftClick}
-            >
-                <Icon name='arrow-left' />
-            </div>
-            <div className='modal-menu__center'>
+        <TriptychGrid className={menuClass}>
+            <TriptychGridItem padded>
+                <div onClick={leftClick}>
+                    <Icon name='arrow-left' />
+                </div>
+            </TriptychGridItem>
+            <TriptychGridItem centered>
                 &nbsp;
-            </div>
-            <div className='modal-menu__right'>
+            </TriptychGridItem>
+            <TriptychGridItem padded>
                 <Icon name='ellipsis-v' />
-            </div>
-        </div>
+            </TriptychGridItem>
+        </TriptychGrid>
     );
 };
 
