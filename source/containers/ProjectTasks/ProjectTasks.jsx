@@ -2,6 +2,9 @@ import Preact from 'preact';
 import { connect } from 'preact-redux';
 import PropTypes from 'prop-types';
 import { createSelector } from 'reselect';
+import Task from './Task/Task';
+
+import './ProjectTasks.less';
 
 const tasksSelector = createSelector(
     props => props.project,
@@ -15,11 +18,33 @@ const tasksSelector = createSelector(
 );
 
 class ProjectTasks extends Preact.Component {
-    render(props) {
-        console.log(tasksSelector(props));
+    renderList(isDone) {
+        const tasks = tasksSelector(this.props);
+        const title = isDone ? 'Done' : 'To Do';
+        return (
+            <div>
+                <div className='project-tasks__name'>
+                    {title}
+                </div>
+                <div className='project-tasks-list'>
+                    {tasks.map((task) => {
+                        if (task.done === isDone) {
+                            return (
+                                <Task task={task} />
+                            );
+                        }
+                        return null
+                    })}
+                </div>
+            </div>
+        );
+    }
+
+    render() {
         return (
             <div className='project-tasks'>
-
+                {this.renderList(false)}
+                {this.renderList(true)}
             </div>
         );
     }
