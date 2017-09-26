@@ -30,7 +30,9 @@ export default function tasksReducer(state = initState, action) {
             });
         case tasksConst.DELETE_TASK:
             return Object.assign({}, state, {
-                data: state.data.filter(task => task.id !== action.id),
+                data: state.data.filter(task => {
+                    return task.id !== action.id;
+                }),
             });
         default:
             return state;

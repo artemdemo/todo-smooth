@@ -12,15 +12,28 @@ const tasksSelector = createSelector(
     props => props.tasks,
     (project, tasks) => {
         if (project.tasks && project.tasks.length > 0) {
-            return tasks.data.filter(task => project.tasks.includes(task.id));
+            return tasks.data
+                .filter(task => project.tasks.includes(task.id))
+                .reduce((acc, task) => {
+                    if (task.done) {
+                        acc.done.push(task);
+                    }
+                    acc.notDone.push(task);
+                    return acc;
+                }, {done: [], notDone: []});
         }
-        return [];
+        return null;
     },
 );
 
 const ProjectTasks = (props) => {
     const renderList = (isDone) => {
-        const tasks = tasksSelector(props);
+        const tasksMap = tasksSelector(props);
+        if (!tasksMap) {
+            return null;
+        }
+
+        const tasks = isDone ? tasksMap.done : tasksMap.notDone;
         if (tasks.length === 0) {
             return null;
         }

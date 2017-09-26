@@ -5,15 +5,27 @@ import { connect } from 'preact-redux';
 import Icon from '../../../components/Icon/Icon';
 import TriptychGrid from '../../../components/TriptychGrid/TriptychGrid';
 import TriptychGridItem from '../../../components/TriptychGridItem/TriptychGridItem';
-import { toggleTaskDone } from '../../../model/tasks/taskActions';
+import { toggleTaskDone, deleteTask } from '../../../model/tasks/taskActions';
 
 import './Task.less';
 
 class Task extends Preact.Component {
-    static renderRemoveButton(task) {
+    deleteTask(e) {
+        const { task, deleteTask } = this.props;
+        e.stopPropagation();
+        deleteTask(task.id);
+    }
+
+    renderDeleteButton() {
+        const { task } = this.props;
         if (task.done) {
             return (
-                <Icon name='trash-o' />
+                <div
+                    className='task__delete'
+                    onClick={this.deleteTask.bind(this)}
+                >
+                    <Icon name='trash-o' />
+                </div>
             );
         }
         return null;
@@ -49,7 +61,7 @@ class Task extends Preact.Component {
                         </span>
                     </TriptychGridItem>
                     <TriptychGridItem>
-                        {Task.renderRemoveButton(task)}
+                        {this.renderDeleteButton()}
                     </TriptychGridItem>
                 </TriptychGrid>
             </div>
@@ -68,5 +80,6 @@ Task.defaultProps = {
 export default connect(
     () => ({}), {
         toggleTaskDone,
+        deleteTask,
     }
 )(Task);
