@@ -50,6 +50,7 @@ class Project extends Preact.Component {
                 />
                 <ProjectTasks
                     project={project}
+                    open={currentProject.open}
                 />
             </div>
         );

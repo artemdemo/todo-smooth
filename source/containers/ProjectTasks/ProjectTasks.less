@@ -1,14 +1,23 @@
 @import '../../styles/colors';
+@import '../../styles/variables';
 
 .project-tasks {
     padding-top: 20px;
+    transition: @transition-duration;
+    transform-origin: bottom;
+    transform: scaleY(0);
+    opacity: 0;
 }
+    .project-tasks_open {
+        transform: scaleY(1);
+        opacity: 1;
+    }
 
-.project-tasks__name {
-    color: @text-color_muted;
-    font-size: 80%;
-    margin-bottom: 10px;
-}
+    .project-tasks__name {
+        color: @text-color_muted;
+        font-size: 80%;
+        margin-bottom: 10px;
+    }
 
 .project-tasks-list {
     margin-bottom: 20px;
