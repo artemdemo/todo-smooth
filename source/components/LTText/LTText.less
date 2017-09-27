@@ -1,0 +1,19 @@
+@import '../../styles/colors';
+@import '../../styles/variables';
+
+.lt-text-wrap {
+    display: inline-block;
+    position: relative;
+}
+
+.lt-text-line {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    border-bottom: 1px solid @text-color_muted;
+    width: 0;
+    transition: @transition-duration;
+}
+    .lt-text-line_show {
+        width: 100%;
+    }

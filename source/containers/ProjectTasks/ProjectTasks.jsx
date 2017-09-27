@@ -35,8 +35,8 @@ const ProjectTasks = (props) => {
                     Tasks
                 </div>
                 <div className='project-tasks-list'>
-                    {tasks.map(task => (
-                        <Task task={task} />
+                    {tasks.map((task, index) => (
+                        <Task task={task} key={`project-tasks-item-${index}`} />
                     ))}
                 </div>
             </div>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { connect } from 'preact-redux';
 import Icon from '../../../components/Icon/Icon';
+import LTText from '../../../components/LTText/LTText';
 import TriptychGrid from '../../../components/TriptychGrid/TriptychGrid';
 import TriptychGridItem from '../../../components/TriptychGridItem/TriptychGridItem';
 import { toggleTaskDone, deleteTask } from '../../../model/tasks/taskActions';
@@ -12,23 +13,10 @@ import './Task.less';
 class Task extends Preact.Component {
     deleteTask(e) {
         const { task, deleteTask } = this.props;
-        e.stopPropagation();
-        deleteTask(task.id);
-    }
-
-    renderDeleteButton() {
-        const { task } = this.props;
         if (task.done) {
-            return (
-                <div
-                    className='task__delete'
-                    onClick={this.deleteTask.bind(this)}
-                >
-                    <Icon name='trash-o' />
-                </div>
-            );
+            e.stopPropagation();
+            deleteTask(task.id);
         }
-        return null;
     }
 
     toggleDone() {
@@ -46,6 +34,10 @@ class Task extends Preact.Component {
             'task__name': true,
             'task__name_checked': task.done,
         });
+        const deleteClass = classnames({
+            'task__delete': true,
+            'task__delete_show': task.done,
+        });
         return (
             <div
                 className='task'
@@ -56,12 +48,20 @@ class Task extends Preact.Component {
                         <div className={checkboxClass} />
                     </TriptychGridItem>
                     <TriptychGridItem>
-                        <span className={nameClass}>
+                        <LTText
+                            className={nameClass}
+                            lineThrough={task.done}
+                        >
                             {task.name}
-                        </span>
+                        </LTText>
                     </TriptychGridItem>
                     <TriptychGridItem>
-                        {this.renderDeleteButton()}
+                        <div
+                            className={deleteClass}
+                            onClick={this.deleteTask.bind(this)}
+                        >
+                            <Icon name='trash-o' />
+                        </div>
                     </TriptychGridItem>
                 </TriptychGrid>
             </div>

@@ -1,4 +1,5 @@
 @import '../../../styles/colors';
+@import '../../../styles/variables';
 
 .task {
     cursor: pointer;
@@ -32,9 +33,14 @@
 
     .task__name {}
         .task__name_checked {
-            text-decoration: line-through;
+            color: @text-color_muted;
         }
 
     .task__delete {
         color: @text-color_muted;
+        opacity: 0;
+        transition: @transition-duration;
     }
+        .task__delete_show {
+            opacity: 1;
+        }
