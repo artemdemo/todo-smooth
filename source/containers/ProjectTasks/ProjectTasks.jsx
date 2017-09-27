@@ -13,50 +13,14 @@ const tasksSelector = createSelector(
     (project, tasks) => {
         if (project.tasks && project.tasks.length > 0) {
             return tasks.data
-                .filter(task => project.tasks.includes(task.id))
-                .reduce((acc, task) => {
-                    if (task.done) {
-                        acc.done.push(task);
-                    }
-                    acc.notDone.push(task);
-                    return acc;
-                }, {done: [], notDone: []});
+                .filter(task => project.tasks.includes(task.id));
         }
-        return null;
+        return [];
     },
 );
 
 const ProjectTasks = (props) => {
-    const renderList = (isDone) => {
-        const tasksMap = tasksSelector(props);
-        if (!tasksMap) {
-            return null;
-        }
-
-        const tasks = isDone ? tasksMap.done : tasksMap.notDone;
-        if (tasks.length === 0) {
-            return null;
-        }
-
-        const title = isDone ? 'Done' : 'To Do';
-        return (
-            <div>
-                <div className='project-tasks__name'>
-                    {title}
-                </div>
-                <div className='project-tasks-list'>
-                    {tasks.map((task) => {
-                        if (task.done === isDone) {
-                            return (
-                                <Task task={task} />
-                            );
-                        }
-                        return null
-                    })}
-                </div>
-            </div>
-        );
-    };
+    const tasks = tasksSelector(props);
 
     const { open } = props;
     const tasksClass = classnames({
@@ -66,8 +30,16 @@ const ProjectTasks = (props) => {
 
     return (
         <div className={tasksClass}>
-            {renderList(false)}
-            {renderList(true)}
+            <div>
+                <div className='project-tasks__name'>
+                    Tasks
+                </div>
+                <div className='project-tasks-list'>
+                    {tasks.map(task => (
+                        <Task task={task} />
+                    ))}
+                </div>
+            </div>
         </div>
     );
 };
