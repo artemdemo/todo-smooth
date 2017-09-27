@@ -1,5 +1,5 @@
-import Preact from 'preact';
-import { connect } from 'preact-redux';
+import React from 'react';
+import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import ProjectHeader from '../../components/ProjectHeader/ProjectHeader';
 import ProjectTasks from '../ProjectTasks/ProjectTasks';
@@ -30,11 +30,11 @@ const doneTasksAmountSelector = createSelector(
     }
 );
 
-class Project extends Preact.Component {
-    render(props) {
-        const { currentProject } = props;
-        const project = projectSelector(props);
-        const doneAmount = doneTasksAmountSelector(props);
+class Project extends React.Component {
+    render() {
+        const { currentProject } = this.props;
+        const project = projectSelector(this.props);
+        const doneAmount = doneTasksAmountSelector(this.props);
         const percentDone = !project.tasks || project.tasks.length === 0 ?
             0 :
             doneAmount / project.tasks.length;

@@ -1,4 +1,4 @@
-import Preact from 'preact';
+import React from 'react';
 import SwiperPkg from 'swiper';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
@@ -6,7 +6,7 @@ import Card from '../../components/Card/Card';
 
 import './Swiper.less';
 
-class Swiper extends Preact.Component {
+class Swiper extends React.Component {
     constructor(props) {
         super(props);
 
@@ -48,10 +48,10 @@ class Swiper extends Preact.Component {
         onClick && onClick(this.swiper.activeIndex, this.swiper.slides[this.swiper.activeIndex]);
     }
 
-    render(props, state) {
+    render() {
         const swiperClass = classnames({
             'swiper-container': true,
-            'swiper-container_show-overflow': state.showOverflow,
+            'swiper-container_show-overflow': this.state.showOverflow,
         });
         return (
             <div
@@ -63,7 +63,7 @@ class Swiper extends Preact.Component {
                 <div
                     className='swiper-wrapper'
                 >
-                    {props.children.map((item, index) => (
+                    {this.props.children.map((item, index) => (
                         <div
                             className='swiper-slide'
                             onClick={this.projectClick.bind(this)}

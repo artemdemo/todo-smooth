@@ -1,4 +1,4 @@
-import Preact from 'preact';
+import React from 'react';
 import Icon from '../Icon/Icon';
 import TriptychGrid from '../TriptychGrid/TriptychGrid';
 import TriptychGridItem from '../TriptychGridItem/TriptychGridItem';

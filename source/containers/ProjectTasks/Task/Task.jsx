@@ -1,7 +1,7 @@
-import Preact from 'preact';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { connect } from 'preact-redux';
+import { connect } from 'react-redux';
 import Icon from '../../../components/Icon/Icon';
 import LTText from '../../../components/LTText/LTText';
 import TriptychGrid from '../../../components/TriptychGrid/TriptychGrid';
@@ -10,7 +10,7 @@ import { toggleTaskDone, deleteTask } from '../../../model/tasks/taskActions';
 
 import './Task.less';
 
-class Task extends Preact.Component {
+class Task extends React.Component {
     deleteTask(e) {
         const { task, deleteTask } = this.props;
         if (task.done) {
@@ -24,8 +24,8 @@ class Task extends Preact.Component {
         toggleTaskDone(task.id);
     }
 
-    render(props) {
-        const { task } = props;
+    render() {
+        const { task } = this.props;
         const checkboxClass = classnames({
             'task__checkbox': true,
             'task__checkbox_checked': task.done,

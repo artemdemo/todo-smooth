@@ -1,4 +1,4 @@
-import Preact from 'preact';
+import React from 'react';
 
 import './Card.less';
 

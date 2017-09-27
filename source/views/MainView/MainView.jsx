@@ -1,5 +1,5 @@
-import Preact from 'preact';
-import { connect } from 'preact-redux';
+import React from 'react';
+import { connect } from 'react-redux';
 import moment from 'moment';
 import Swiper from '../../components/Swiper/Swiper';
 import MainMenu from '../../components/MainMenu/MainMenu';
@@ -15,7 +15,7 @@ import Project from '../../containers/Project/Project';
 
 import './MainView.less';
 
-class MainView extends Preact.Component {
+class MainView extends React.Component {
     constructor(props) {
         super(props);
 
@@ -60,8 +60,8 @@ class MainView extends Preact.Component {
         toggleProjectModal(false);
     }
 
-    render(props) {
-        const { user, projects, tasks, currentProject } = props;
+    render() {
+        const { user, projects, tasks, currentProject } = this.props;
         const today = moment();
         return (
             <div>

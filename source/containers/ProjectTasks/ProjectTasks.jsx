@@ -1,6 +1,6 @@
-import Preact from 'preact';
+import React from 'react';
 import classnames from 'classnames';
-import { connect } from 'preact-redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createSelector } from 'reselect';
 import Task from './Task/Task';

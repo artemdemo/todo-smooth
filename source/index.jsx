@@ -1,13 +1,14 @@
 import 'babel-polyfill';
-import Preact from 'preact';
-import { Provider } from 'preact-redux';
+import React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 
 import store from './store';
 
 import AppView from './views/AppView/AppView';
 import MainView from './views/MainView/MainView';
 
-Preact.render(
+render(
     <Provider store={store}>
         <AppView>
             <MainView />

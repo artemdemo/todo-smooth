@@ -1,11 +1,11 @@
-import Preact from 'preact';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import ModalMenu from './ModalMenu/ModalMenu';
 
 import './Modal.less';
 
-class Modal extends Preact.Component {
+class Modal extends React.Component {
     constructor(props) {
         super(props);
 
@@ -85,7 +85,7 @@ class Modal extends Preact.Component {
         onClose && onClose();
     }
 
-    render(props) {
+    render() {
         const modalClass = classnames({
             'modal': true,
             'modal_animation': this.state.animation,
@@ -108,7 +108,7 @@ class Modal extends Preact.Component {
                     onLeftClick={this.sendCloseAction.bind(this)}
                 />
                 <div className='modal__content'>
-                    {props.children}
+                    {this.props.children}
                 </div>
             </div>
         );
