@@ -39,8 +39,6 @@
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
     "moment": "^2.18.1",
-    "preact": "^8.2.5",
-    "preact-redux": "^2.0.2",
     "prop-types": "^15.5.10",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
