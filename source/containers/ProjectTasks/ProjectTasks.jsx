@@ -36,7 +36,10 @@ const ProjectTasks = (props) => {
                 </div>
                 <div className='project-tasks-list'>
                     {tasks.map((task, index) => (
-                        <Task task={task} key={`project-tasks-item-${index}`} />
+                        <Task
+                            task={task}
+                            key={`project-tasks-list_item-${index}-${Math.floor(Math.random() * 1000)}`}
+                        />
                     ))}
                 </div>
             </div>
