@@ -3,17 +3,22 @@
 
 .lt-text-wrap {
     display: inline-block;
-    position: relative;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
 }
 
 .lt-text-line {
     position: absolute;
     left: 0;
-    top: 50%;
+    top: 47%;
     border-bottom: 1px solid @text-color_muted;
     width: 0;
-    transition: @transition-duration;
 }
-    .lt-text-line_show {
-        width: 100%;
+    .lt-text-line_animated {
+        transition: @transition-duration;
     }
