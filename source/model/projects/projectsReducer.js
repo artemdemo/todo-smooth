@@ -10,7 +10,7 @@ const initState = {
             tasks: [0, 1, 2, 3, 4, 5],
         },
         {
-        id: 1,
+            id: 1,
             name: 'Personal',
             color: '#ff7a43',
             icon: 'users',
@@ -28,6 +28,28 @@ const initState = {
 
 export default function projectReducer(state = initState, action) {
     switch (action.type) {
+        case projectConst.REMOVE_TASK_FROM_PROJECT:
+            let projectIndex = null;
+            const project = state.data.find((project, index) => {
+                if (project.id === action.projectId) {
+                    projectIndex = index;
+                    return true;
+                }
+                return false;
+            });
+            if (project) {
+                const tasks = project.tasks.filter(taskId => taskId !== action.taskId);
+                return Object.assign({}, state, {
+                    data: [
+                        ...state.data.slice(0, projectIndex),
+                        Object.assign({}, project, {
+                            tasks,
+                        }),
+                        ...state.data.slice(projectIndex + 1),
+                    ],
+                });
+            }
+            return state;
         default:
             return state;
     }

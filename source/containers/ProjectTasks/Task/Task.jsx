@@ -12,10 +12,11 @@ import './Task.less';
 
 class Task extends React.Component {
     deleteTask(e) {
-        const { task, deleteTask } = this.props;
+        const { task, deleteTask, onDelete } = this.props;
         if (task.done) {
             e.stopPropagation();
             deleteTask(task.id);
+            onDelete(task.id);
         }
     }
 
@@ -71,10 +72,12 @@ class Task extends React.Component {
 
 Task.propTypes = {
     task: PropTypes.shape({}),
+    onDelete: PropTypes.func,
 };
 
 Task.defaultProps = {
     task: {},
+    onDelete: null,
 };
 
 export default connect(
