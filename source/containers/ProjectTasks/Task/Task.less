@@ -1,0 +1,47 @@
+@import '../../../styles/colors';
+@import '../../../styles/variables';
+
+.task {
+    cursor: pointer;
+    padding: 13px 0 10px 0;
+    border-bottom: 1px solid lighten(@text-color_muted, 40);
+    -webkit-tap-highlight-color: transparent;
+}
+    .task__checkbox {
+        display: inline-block;
+        border-radius: 3px;
+        width: 17px;
+        height: 17px;
+        border: 1px solid lighten(@text-color_muted, 25);
+        margin-right: 20px;
+        position: relative;
+        transition: @transition-duration;
+    }
+        .task__checkbox_checked {
+            background-color: lighten(@text-color_muted, 30);
+            &:after {
+                content: "";
+                position: absolute;
+                top: 2px;
+                left: 6px;
+                width: 4px;
+                height: 8px;
+                border-bottom: 2px solid white;
+                border-right: 2px solid white;
+                transform: rotate(36deg);
+            }
+        }
+
+    .task__name {}
+        .task__name_checked {
+            color: @text-color_muted;
+        }
+
+    .task__delete {
+        color: lighten(@text-color_muted, 30);
+        opacity: 0;
+        transition: @transition-duration;
+    }
+        .task__delete_show {
+            opacity: 1;
+        }

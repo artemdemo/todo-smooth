@@ -1,5 +1,6 @@
-import Preact from 'preact';
+import React from 'react';
 import PropTypes from 'prop-types';
+import CountRun from '../CountRun/CountRun';
 
 import './PercentBar.less';
 
@@ -18,7 +19,10 @@ const PercentBar = (props) => {
                 />
             </div>
             <div className='percent-bar__amount'>
-                {Math.ceil(percent)}%
+                <CountRun duration={400}>
+                    {Math.ceil(percent)}
+                </CountRun>
+                %
             </div>
         </div>
     );

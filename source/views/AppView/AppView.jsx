@@ -1,6 +1,6 @@
-import Preact from 'preact';
+import React from 'react';
 import Color from 'color';
-import { connect } from 'preact-redux';
+import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import './AppView.less';
@@ -20,7 +20,7 @@ const projectSelector = createSelector(
     },
 );
 
-class AppView extends Preact.Component {
+class AppView extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (this.props.currentProject !== nextProps.currentProject) {
             const project = projectSelector(nextProps);
@@ -29,10 +29,10 @@ class AppView extends Preact.Component {
         }
     }
 
-    render(props) {
+    render() {
         return (
             <div>
-                {props.children}
+                {this.props.children}
             </div>
         );
     }

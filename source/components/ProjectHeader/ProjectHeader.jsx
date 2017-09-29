@@ -1,4 +1,4 @@
-import Preact from 'preact';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import PercentBar from '../PercentBar/PercentBar';
@@ -7,13 +7,13 @@ import ProjectTitle from '../ProjectTitle/ProjectTitle';
 
 import './ProjectHeader.less';
 
-class ProjectHeader extends Preact.Component {
+class ProjectHeader extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    render(props) {
-        const { name, tasksAmount, percentDone, color, icon, open } = props;
+    render() {
+        const { name, tasksAmount, percentDone, color, icon, open } = this.props;
         const iconClass = classnames({
             'project-header-icon': true,
             'project-header-icon_open': open,

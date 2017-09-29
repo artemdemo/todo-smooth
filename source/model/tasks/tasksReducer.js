@@ -1,3 +1,5 @@
+import * as tasksConst from './tasksConst';
+
 const initState = {
     data: [
         {id: 0, name: 'Design Sprint', done: false},
@@ -17,6 +19,21 @@ const initState = {
 
 export default function tasksReducer(state = initState, action) {
     switch (action.type) {
+        case tasksConst.TOGGLE_DONE:
+            return Object.assign({}, state, {
+                data: state.data.map((task) => {
+                    if (task.id === action.id) {
+                        return Object.assign({}, task, {done: !task.done});
+                    }
+                    return task;
+                }),
+            });
+        case tasksConst.DELETE_TASK:
+            return Object.assign({}, state, {
+                data: state.data.filter(task => {
+                    return task.id !== action.id;
+                }),
+            });
         default:
             return state;
     }
