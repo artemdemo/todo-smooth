@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createSelector } from 'reselect';
-import Task from './Task/Task';
+import TaskItem from './TaskItem/TaskItem';
 import { removeTaskFromProject } from '../../model/projects/projectActions';
 
 import './ProjectTasks.less';
@@ -45,7 +45,7 @@ class ProjectTasks extends React.Component {
                         {tasks.map((task, index) => {
                             const key = `project-tasks-list_item-${index}-${task.name.replace(/\s/g, '-')}`;
                             return (
-                                <Task
+                                <TaskItem
                                     task={task}
                                     onDelete={this.removeTask.bind(this)}
                                     key={key}

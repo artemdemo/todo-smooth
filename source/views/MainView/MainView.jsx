@@ -12,6 +12,8 @@ import {
     toggleProjectModal,
 } from '../../model/currentProject/currentProjectActions';
 import Project from '../../containers/Project/Project';
+import Task from '../../containers/Task/Task';
+import AddTaskBtn from '../../components/AddTaskBtn/AddTaskBtn';
 
 import './MainView.less';
 
@@ -103,6 +105,19 @@ class MainView extends React.Component {
                 >
                     <Project />
                 </Modal>
+                <Modal
+                    rect={{
+                        top: '100%',
+                        left: '0',
+                        width: '100%',
+                        height: '1px',
+                    }}
+                    open={false}
+                    onClose={null}
+                >
+                    <Task />
+                </Modal>
+                <AddTaskBtn open={currentProject.open} />
             </div>
         );
     }

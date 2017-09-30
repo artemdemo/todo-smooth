@@ -8,9 +8,9 @@ import TriptychGrid from '../../../components/TriptychGrid/TriptychGrid';
 import TriptychGridItem from '../../../components/TriptychGridItem/TriptychGridItem';
 import { toggleTaskDone, deleteTask } from '../../../model/tasks/taskActions';
 
-import './Task.less';
+import './TaskItem.less';
 
-class Task extends React.Component {
+class TaskItem extends React.Component {
     deleteTask(e) {
         const { task, deleteTask, onDelete } = this.props;
         if (task.done) {
@@ -70,12 +70,12 @@ class Task extends React.Component {
     }
 }
 
-Task.propTypes = {
+TaskItem.propTypes = {
     task: PropTypes.shape({}),
     onDelete: PropTypes.func,
 };
 
-Task.defaultProps = {
+TaskItem.defaultProps = {
     task: {},
     onDelete: null,
 };
@@ -85,4 +85,4 @@ export default connect(
         toggleTaskDone,
         deleteTask,
     }
-)(Task);
+)(TaskItem);

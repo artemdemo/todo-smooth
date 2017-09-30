@@ -117,10 +117,10 @@ class Modal extends React.Component {
 
 Modal.propTypes = {
     rect: PropTypes.shape({
-        top: PropTypes.number,
-        left: PropTypes.number,
-        width: PropTypes.number,
-        height: PropTypes.number,
+        top: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        left: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     }),
     open: PropTypes.bool,
     onClose: PropTypes.func,
