@@ -49,6 +49,10 @@ class CountRun extends React.Component {
                     count,
                 });
                 this.tick();
+            } else {
+                this.setState({
+                    count: this.endCount,
+                });
             }
         });
     }
