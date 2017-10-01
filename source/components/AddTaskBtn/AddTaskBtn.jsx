@@ -17,13 +17,14 @@ class AddTaskBtn extends React.Component {
             'add-task-button_open': open,
             'add-task-button_is-saving': isSaving,
         });
+        const text = isSaving ? 'Save' : '+';
         return (
             <div
                 className={btnClass}
                 onClick={this.handleClick.bind(this)}
             >
                 <span className='add-task-button__text'>
-                    +
+                    {text}
                 </span>
             </div>
         );
