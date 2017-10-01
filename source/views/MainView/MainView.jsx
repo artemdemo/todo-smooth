@@ -70,6 +70,11 @@ class MainView extends React.Component {
         toggleTaskModal(true);
     }
 
+    closeTask() {
+        const { toggleTaskModal } = this.props;
+        toggleTaskModal(false);
+    }
+
     render() {
         const { user, projects, tasks, currentProject, currentTask } = this.props;
         const today = moment();
@@ -109,7 +114,16 @@ class MainView extends React.Component {
                 <Modal
                     rect={currentProject.rect}
                     open={currentProject.open}
-                    onClose={this.closeProjectModal.bind(this)}
+                    buttons={{
+                        left: {
+                            icon: 'arrow-left',
+                            onClick: this.closeProjectModal.bind(this),
+                        },
+                        right: {
+                            icon: 'ellipsis-v',
+                            onClick: null,
+                        },
+                    }}
                 >
                     <Project />
                 </Modal>
@@ -121,12 +135,22 @@ class MainView extends React.Component {
                         height: '1px',
                     }}
                     open={currentTask.open}
-                    onClose={null}
+                    buttons={{
+                        left: {
+                            icon: 'times',
+                            onClick: this.closeTask.bind(this),
+                        },
+                        right: {
+                            icon: null,
+                            onClick: null,
+                        },
+                    }}
                 >
                     <Task />
                 </Modal>
                 <AddTaskBtn
                     onClick={this.openSaveTask.bind(this)}
+                    isSaving={currentTask.open}
                     open={currentProject.open}
                 />
             </div>

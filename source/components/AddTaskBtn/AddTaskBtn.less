@@ -5,7 +5,7 @@
     background: linear-gradient(45deg, @main-blue, lighten(@main-blue, 10));;
     color: white;
     border-radius: 50%;
-    padding: 7%;
+    padding: 7% 7%;
     text-align: center;
     position: absolute;
     right: 20px;
@@ -14,13 +14,22 @@
     transition: @transition-duration;
     transform: scale(0);
 
-    &:active {
-        transition-duration: 80ms;
-        transform: scale(0.85);
-    }
+    //&:active {
+    //    transition-duration: 80ms;
+    //    transform: scale(0.85);
+    //}
 }
     .add-task-button_open {
         transform: scale(1);
+    }
+    .add-task-button_is-saving {
+        right: 0;
+        padding: 7% 50%;
+        border-radius: 0;
+
+        .add-task-button__text {
+            transform: translate(50%,-50%);
+        }
     }
     .add-task-button__text {
         position: absolute;

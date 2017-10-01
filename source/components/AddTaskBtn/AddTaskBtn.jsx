@@ -11,10 +11,11 @@ class AddTaskBtn extends React.Component {
     }
 
     render() {
-        const { open } = this.props;
+        const { open, isSaving } = this.props;
         const btnClass = classnames({
             'add-task-button': true,
             'add-task-button_open': open,
+            'add-task-button_is-saving': isSaving,
         });
         return (
             <div
@@ -31,11 +32,13 @@ class AddTaskBtn extends React.Component {
 
 AddTaskBtn.propTypes = {
     open: PropTypes.bool,
+    isSaving: PropTypes.bool,
     onClick: PropTypes.func,
 };
 
 AddTaskBtn.defaultProps = {
     open: false,
+    isSaving: false,
     onClick: null,
 };
 
