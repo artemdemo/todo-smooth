@@ -11,6 +11,9 @@ import {
     setCurrentProjectRect,
     toggleProjectModal,
 } from '../../model/currentProject/currentProjectActions';
+import {
+    toggleTaskModal,
+} from '../../model/currentTask/currentTaskActions';
 import Project from '../../containers/Project/Project';
 import Task from '../../containers/Task/Task';
 import AddTaskBtn from '../../components/AddTaskBtn/AddTaskBtn';
@@ -47,7 +50,7 @@ class MainView extends React.Component {
         }
     }
 
-    openModal(listId, projectEl) {
+    openProjectModal(listId, projectEl) {
         const { projects, setCurrentProjectRect, toggleProjectModal } = this.props;
         setCurrentProjectRect(projectEl.getBoundingClientRect());
         this.setState({
@@ -57,13 +60,18 @@ class MainView extends React.Component {
         });
     }
 
-    closeModal() {
+    closeProjectModal() {
         const { toggleProjectModal } = this.props;
         toggleProjectModal(false);
     }
 
+    openSaveTask() {
+        const { toggleTaskModal } = this.props;
+        toggleTaskModal(true);
+    }
+
     render() {
-        const { user, projects, tasks, currentProject } = this.props;
+        const { user, projects, tasks, currentProject, currentTask } = this.props;
         const today = moment();
         return (
             <div>
@@ -75,7 +83,7 @@ class MainView extends React.Component {
                     </div>
                     <Swiper
                         onChange={this.projectChanged.bind(this)}
-                        onClick={this.openModal.bind(this)}
+                        onClick={this.openProjectModal.bind(this)}
                     >
                         {projects.data.map((project, index) => {
                             const doneAmount = tasks.data.reduce((acc, task) => {
@@ -101,7 +109,7 @@ class MainView extends React.Component {
                 <Modal
                     rect={currentProject.rect}
                     open={currentProject.open}
-                    onClose={this.closeModal.bind(this)}
+                    onClose={this.closeProjectModal.bind(this)}
                 >
                     <Project />
                 </Modal>
@@ -112,12 +120,15 @@ class MainView extends React.Component {
                         width: '100%',
                         height: '1px',
                     }}
-                    open={false}
+                    open={currentTask.open}
                     onClose={null}
                 >
                     <Task />
                 </Modal>
-                <AddTaskBtn open={currentProject.open} />
+                <AddTaskBtn
+                    onClick={this.openSaveTask.bind(this)}
+                    open={currentProject.open}
+                />
             </div>
         );
     }
@@ -126,6 +137,7 @@ class MainView extends React.Component {
 export default connect(
     state => ({
         currentProject: state.currentProject,
+        currentTask: state.currentTask,
         projects: state.projects,
         tasks: state.tasks,
         user: state.user,
@@ -133,5 +145,6 @@ export default connect(
         setCurrentProjectId,
         setCurrentProjectRect,
         toggleProjectModal,
+        toggleTaskModal,
     },
 )(MainView);

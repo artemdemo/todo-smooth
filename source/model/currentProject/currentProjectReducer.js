@@ -17,8 +17,6 @@ export default function (state = initState, action) {
             return Object.assign({}, state, {
                 rect: {top, right, bottom, left, width, height, x, y},
             });
-        case currentProjectConst.CLEAR_CURRENT_PROJECT:
-            return Object.assign({}, state, initState);
         case currentProjectConst.TOGGLE_PROJECT_MODAL:
 
             return Object.assign({}, state, {
