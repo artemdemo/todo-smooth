@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import Input from '../../components/Input/Input';
+import { updateTaskName } from '../../model/currentTask/currentTaskActions';
 
 const taskSelector = createSelector(
     props => props.currentTask,
@@ -37,10 +38,20 @@ class Task extends React.Component {
         }
     }
 
+    updateTaskName(name) {
+        const { updateTaskName } = this.props;
+        updateTaskName(name);
+    }
+
     render() {
+        const { currentTask } = this.props;
         return (
             <div>
-                <Input placeholder='Task name' />
+                <Input
+                    placeholder='Task name'
+                    value={currentTask.name}
+                    onChange={this.updateTaskName.bind(this)}
+                />
             </div>
         );
     }
@@ -50,5 +61,7 @@ export default connect(
     state => ({
         currentTask: state.currentTask,
         tasks: state.tasks,
-    }),
+    }), {
+        updateTaskName,
+    },
 )(Task);

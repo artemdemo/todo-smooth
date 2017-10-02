@@ -13,6 +13,7 @@ import {
 } from '../../model/currentProject/currentProjectActions';
 import {
     toggleTaskModal,
+    updateTaskName,
 } from '../../model/currentTask/currentTaskActions';
 import Project from '../../containers/Project/Project';
 import Task from '../../containers/Task/Task';
@@ -71,8 +72,9 @@ class MainView extends React.Component {
     }
 
     closeTask() {
-        const { toggleTaskModal } = this.props;
+        const { toggleTaskModal, updateTaskName } = this.props;
         toggleTaskModal(false);
+        updateTaskName('');
     }
 
     render() {
@@ -170,5 +172,6 @@ export default connect(
         setCurrentProjectRect,
         toggleProjectModal,
         toggleTaskModal,
+        updateTaskName,
     },
 )(MainView);

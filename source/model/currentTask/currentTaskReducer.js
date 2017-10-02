@@ -4,6 +4,7 @@ const initState = {
     taskId: null,
     rect: {},
     open: false,
+    name: '',
 };
 
 export default function (state = initState, action) {
@@ -15,6 +16,10 @@ export default function (state = initState, action) {
         case currentTaskConst.TOGGLE_TASK_MODAL:
             return Object.assign({}, state, {
                 open: action.open !== undefined ? action.open : !state.open,
+            });
+        case currentTaskConst.UPDATE_TASK_NAME:
+            return Object.assign({}, state, {
+                name: action.name,
             });
         default:
             return state;

@@ -8,36 +8,28 @@ class Input extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
-    }
-
-    componentDidMount() {
-        const { value, className, onChange } = this.props;
-        const newState = {
-            value,
+        this.state = {
+            value: '',
         };
-        if (onChange) {
-            newState.onChange = this.changeHandler.bind(this);
-        }
-        this.setState(newState);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        const valueChanged = this.props.value !== nextProps.value;
-        const onChangeChanged = this.props.onChange !== nextProps.onChange;
-        const newState = {};
-        if (valueChanged) {
-            newState.value = nextProps.value;
-        }
-        if (onChangeChanged) {
-            newState.onChange = nextProps.onChange;
-        }
-        this.setState(newState);
     }
 
     changeHandler(e) {
-        const { onChange } = this.props;
-        onChange && onChange(e);
+        const { onChange, value } = this.props;
+        const inputValue = e.target.value;
+        onChange && onChange(inputValue);
+        if (value === undefined) {
+            this.setState({
+                value: inputValue,
+            });
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.value !== nextProps.value) {
+            this.setState({
+                value: nextProps.value,
+            });
+        }
     }
 
     render() {
@@ -47,7 +39,8 @@ class Input extends React.Component {
             <input
                 className={inputClass}
                 placeholder={placeholder}
-                {...this.state}
+                value={this.state.value}
+                onChange={this.changeHandler.bind(this)}
             />
         );
     }

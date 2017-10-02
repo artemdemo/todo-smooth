@@ -7,6 +7,13 @@ export function setCurrentTaskId(taskId) {
     };
 }
 
+export function updateTaskName(name) {
+    return {
+        type: currentTaskConst.UPDATE_TASK_NAME,
+        name,
+    };
+}
+
 export function toggleTaskModal(open) {
     return {
         type: currentTaskConst.TOGGLE_TASK_MODAL,
