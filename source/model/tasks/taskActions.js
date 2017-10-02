@@ -13,3 +13,10 @@ export function deleteTask(id) {
         id,
     };
 }
+
+export function addTask(name) {
+    return {
+        type: taskConst.ADD_TASK,
+        name,
+    };
+}

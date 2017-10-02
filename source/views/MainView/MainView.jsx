@@ -15,6 +15,9 @@ import {
     toggleTaskModal,
     updateTaskName,
 } from '../../model/currentTask/currentTaskActions';
+import {
+    addTask,
+} from '../../model/tasks/taskActions';
 import Project from '../../containers/Project/Project';
 import Task from '../../containers/Task/Task';
 import AddTaskBtn from '../../components/AddTaskBtn/AddTaskBtn';
@@ -67,8 +70,13 @@ class MainView extends React.Component {
     }
 
     openSaveTask() {
-        const { toggleTaskModal } = this.props;
-        toggleTaskModal(true);
+        const { toggleTaskModal, currentTask, addTask } = this.props;
+        if (currentTask.name !== '') {
+            addTask(currentTask.name);
+            toggleTaskModal(false);
+        } else {
+            toggleTaskModal(true);
+        }
     }
 
     closeTask() {
@@ -173,5 +181,6 @@ export default connect(
         toggleProjectModal,
         toggleTaskModal,
         updateTaskName,
+        addTask,
     },
 )(MainView);
