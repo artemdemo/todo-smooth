@@ -13,18 +13,8 @@ const tasksSelector = createSelector(
     props => props.tasks,
     (project, tasks) => {
         if (project.tasks && project.tasks.length > 0) {
-            const projectTasks =  tasks.data
+            return tasks.data
                 .filter(task => project.tasks.includes(task.id));
-            projectTasks.sort((itemA, itemB) => {
-                if (itemA.done && !itemB.done) {
-                    return 1;
-                }
-                if (!itemA.done && itemB.done) {
-                    return -1;
-                }
-                return 0;
-            });
-            return projectTasks;
         }
         return [];
     },
