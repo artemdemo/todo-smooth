@@ -82,6 +82,7 @@ class MainView extends React.Component {
             addTask,
             addTaskToProject,
             setTaskNameError,
+            updateTaskName,
         } = this.props;
         if (currentTask.name !== '') {
             const taskId = generateId();
@@ -89,6 +90,7 @@ class MainView extends React.Component {
             addTaskToProject(currentProject.projectId, taskId);
             toggleTaskModal(false);
             setTaskNameError(false);
+            updateTaskName('');
         } else if (currentTask.open && currentTask.name === '') {
             setTaskNameError(true);
         } else {
