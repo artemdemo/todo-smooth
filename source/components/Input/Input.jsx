@@ -33,8 +33,11 @@ class Input extends React.Component {
     }
 
     render() {
-        const { className, placeholder } = this.props;
-        const inputClass = classnames('input', className);
+        const { className, placeholder, error } = this.props;
+        const inputClass = classnames(className, {
+            'input': true,
+            'input_error': error,
+        });
         return (
             <input
                 className={inputClass}
@@ -51,6 +54,7 @@ Input.propTypes = {
     className: PropTypes.string,
     placeholder: PropTypes.string,
     onChange: PropTypes.func,
+    error: PropTypes.bool,
 };
 
 Input.defaultProps = {
@@ -58,6 +62,7 @@ Input.defaultProps = {
     className: '',
     placeholder: '',
     onChange: null,
+    error: false,
 };
 
 export default Input;

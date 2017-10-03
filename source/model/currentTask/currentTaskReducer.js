@@ -5,6 +5,7 @@ const initState = {
     rect: {},
     open: false,
     name: '',
+    nameError: false,
 };
 
 export default function (state = initState, action) {
@@ -20,6 +21,11 @@ export default function (state = initState, action) {
         case currentTaskConst.UPDATE_TASK_NAME:
             return Object.assign({}, state, {
                 name: action.name,
+                nameError: false,
+            });
+        case currentTaskConst.SET_TASK_NAME_ERROR:
+            return Object.assign({}, state, {
+                nameError: action.error !== false,
             });
         default:
             return state;

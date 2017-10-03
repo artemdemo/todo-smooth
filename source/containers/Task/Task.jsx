@@ -55,6 +55,7 @@ class Task extends React.Component {
                 <Input
                     placeholder='Task name'
                     value={currentTask.name}
+                    error={currentTask.nameError}
                     onChange={this.updateTaskName.bind(this)}
                 />
             </div>

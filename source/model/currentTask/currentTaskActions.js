@@ -20,3 +20,10 @@ export function toggleTaskModal(open) {
         open,
     }
 }
+
+export function setTaskNameError(error = true) {
+    return {
+        type: currentTaskConst.SET_TASK_NAME_ERROR,
+        error,
+    }
+}

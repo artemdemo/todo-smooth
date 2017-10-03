@@ -14,6 +14,7 @@ import {
 import {
     toggleTaskModal,
     updateTaskName,
+    setTaskNameError,
 } from '../../model/currentTask/currentTaskActions';
 import {
     addTask,
@@ -74,12 +75,22 @@ class MainView extends React.Component {
     }
 
     openSaveTask() {
-        const { toggleTaskModal, currentTask, currentProject, addTask, addTaskToProject } = this.props;
+        const {
+            toggleTaskModal,
+            currentTask,
+            currentProject,
+            addTask,
+            addTaskToProject,
+            setTaskNameError,
+        } = this.props;
         if (currentTask.name !== '') {
             const taskId = generateId();
             addTask(taskId, currentTask.name);
             addTaskToProject(currentProject.projectId, taskId);
             toggleTaskModal(false);
+            setTaskNameError(false);
+        } else if (currentTask.open && currentTask.name === '') {
+            setTaskNameError(true);
         } else {
             toggleTaskModal(true);
         }
@@ -187,6 +198,7 @@ export default connect(
         toggleProjectModal,
         toggleTaskModal,
         updateTaskName,
+        setTaskNameError,
         addTask,
         addTaskToProject,
     },
