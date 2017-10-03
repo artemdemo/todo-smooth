@@ -164,6 +164,7 @@ class MainView extends React.Component {
                         height: '1px',
                     }}
                     open={currentTask.open}
+                    caption='New Task'
                     buttons={{
                         left: {
                             icon: 'times',

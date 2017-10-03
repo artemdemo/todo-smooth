@@ -29,7 +29,7 @@ const ModalMenu = (props) => {
                 {renderButton(buttons.left)}
             </TriptychGridItem>
             <TriptychGridItem centered>
-                &nbsp;
+                {props.children}
             </TriptychGridItem>
             <TriptychGridItem padded>
                 {renderButton(buttons.right)}

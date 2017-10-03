@@ -86,7 +86,7 @@ class Modal extends React.Component {
     }
 
     render() {
-        const { buttons } = this.props;
+        const { buttons, caption } = this.props;
         const modalClass = classnames({
             'modal': true,
             'modal_animation': this.state.animation,
@@ -108,7 +108,9 @@ class Modal extends React.Component {
                     open={this.state.open}
                     buttons={buttons}
                     onLeftClick={this.sendCloseAction.bind(this)}
-                />
+                >
+                    {caption}
+                </ModalMenu>
                 <div className='modal__content'>
                     {this.props.children}
                 </div>
@@ -134,12 +136,14 @@ Modal.propTypes = {
             onClick: PropTypes.func,
         })
     }),
+    caption: PropTypes.string,
     open: PropTypes.bool,
 };
 
 Modal.defaultProps = {
     rect: null,
     open: false,
+    caption: '',
     buttons: undefined,
 };
 
