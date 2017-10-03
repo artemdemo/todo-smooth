@@ -4,6 +4,8 @@ import { createSelector } from 'reselect';
 import Input from '../../components/Input/Input';
 import { updateTaskName } from '../../model/currentTask/currentTaskActions';
 
+import './Task.less';
+
 const taskSelector = createSelector(
     props => props.currentTask,
     props => props.tasks,
@@ -47,6 +49,9 @@ class Task extends React.Component {
         const { currentTask } = this.props;
         return (
             <div>
+                <div className='task-name-description'>
+                    What are you planning to do?
+                </div>
                 <Input
                     placeholder='Task name'
                     value={currentTask.name}
