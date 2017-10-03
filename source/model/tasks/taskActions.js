@@ -14,9 +14,10 @@ export function deleteTask(id) {
     };
 }
 
-export function addTask(name) {
+export function addTask(id, name) {
     return {
         type: taskConst.ADD_TASK,
+        id,
         name,
     };
 }

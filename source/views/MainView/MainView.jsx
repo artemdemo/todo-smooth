@@ -18,9 +18,13 @@ import {
 import {
     addTask,
 } from '../../model/tasks/taskActions';
+import {
+    addTaskToProject,
+} from '../../model/projects/projectActions';
 import Project from '../../containers/Project/Project';
 import Task from '../../containers/Task/Task';
 import AddTaskBtn from '../../components/AddTaskBtn/AddTaskBtn';
+import { generateId } from '../../services/id';
 
 import './MainView.less';
 
@@ -70,9 +74,11 @@ class MainView extends React.Component {
     }
 
     openSaveTask() {
-        const { toggleTaskModal, currentTask, addTask } = this.props;
+        const { toggleTaskModal, currentTask, currentProject, addTask, addTaskToProject } = this.props;
         if (currentTask.name !== '') {
-            addTask(currentTask.name);
+            const taskId = generateId();
+            addTask(taskId, currentTask.name);
+            addTaskToProject(currentProject.projectId, taskId);
             toggleTaskModal(false);
         } else {
             toggleTaskModal(true);
@@ -182,5 +188,6 @@ export default connect(
         toggleTaskModal,
         updateTaskName,
         addTask,
+        addTaskToProject,
     },
 )(MainView);

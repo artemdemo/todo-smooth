@@ -39,7 +39,7 @@ export default function tasksReducer(state = initState, action) {
                 data: [
                     ...state.data,
                     {
-                        id: String(+(new Date())) + String(Math.floor(Math.random() * 1000)),
+                        id: action.id,
                         name: action.name,
                     }
                 ],

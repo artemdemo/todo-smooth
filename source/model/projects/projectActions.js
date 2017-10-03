@@ -7,3 +7,11 @@ export function removeTaskFromProject(projectId, taskId) {
         taskId,
     }
 }
+
+export function addTaskToProject(projectId, taskId) {
+    return {
+        type: projectConst.ADD_TASK_TO_PROJECT,
+        projectId,
+        taskId,
+    }
+}
