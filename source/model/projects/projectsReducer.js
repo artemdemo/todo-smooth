@@ -63,8 +63,8 @@ export default function projectReducer(state = initState, action) {
             const addData = getProject(state.data, action.projectId);
             if (addData.project) {
                 const tasks = [
-                    ...addData.project.tasks,
                     action.taskId,
+                    ...addData.project.tasks,
                 ];
                 return Object.assign({}, state, {
                     data: [
