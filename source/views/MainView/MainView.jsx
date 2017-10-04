@@ -45,12 +45,6 @@ class MainView extends React.Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (this.props.projects.data !== nextProps.projects.data) {
-            this.projectChanged(0);
-        }
-    }
-
     projectChanged(listId) {
         const { projects, setCurrentProjectId } = this.props;
         const project = projects.data[listId];
