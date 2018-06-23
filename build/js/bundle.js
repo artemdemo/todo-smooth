@@ -954,7 +954,7 @@ var AppView = function (_React$Component) {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
-                'div',
+                _react2.default.Fragment,
                 null,
                 this.props.children
             );
@@ -1165,7 +1165,7 @@ var MainView = function (_React$Component) {
 
             var today = (0, _moment2.default)();
             return _react2.default.createElement(
-                'div',
+                _react2.default.Fragment,
                 null,
                 _react2.default.createElement(_MainMenu2.default, null),
                 _react2.default.createElement(_UserGreeting2.default, { user: user.data }),
@@ -2063,7 +2063,11 @@ var Modal = function (_React$Component) {
                 width: rect.width,
                 height: rect.height
             });
-            window.requestAnimationFrame(function () {
+
+            // I used before `window.requestAnimationFrame`,
+            // but it's worked too fast and the first opening animation was buggy
+            // Therefore I switched to setTimeout
+            setTimeout(function () {
                 _this2.setState({
                     animation: true
                 }, function () {
@@ -2075,7 +2079,7 @@ var Modal = function (_React$Component) {
                         height: null
                     });
                 });
-            });
+            }, 16);
         }
     }, {
         key: 'closeModal',
