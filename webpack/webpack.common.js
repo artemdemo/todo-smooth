@@ -25,7 +25,7 @@ module.exports = (options) => {
             chunkFilename: options.isProduction ?
                 './js/[id].chunk-[chunkhash].js' :
                 './js/[id].chunk.js',
-            publicPath: '/',
+            publicPath: '/todo-smooth/build',
         },
         resolve: {
             extensions: ['.js', '.jsx'],
@@ -52,11 +52,11 @@ module.exports = (options) => {
                 {test: /\.(html)(\?.*$|$)/, use: 'html-loader'},
 
                 // Font Definitions
-                {test: /\.(svg)(\?.*$|$)/, use: 'url-loader?limit=65000&mimetype=image/svg+xml&name=fonts/[name].[ext]'},
-                {test: /\.(woff)(\?.*$|$)/, use: 'url-loader?limit=65000&mimetype=application/font-woff&name=fonts/[name].[ext]'},
-                {test: /\.(woff2)(\?.*$|$)/, use: 'url-loader?limit=65000&mimetype=application/font-woff2&name=fonts/[name].[ext]'},
-                {test: /\.([ot]tf)(\?.*$|$)/, use: 'url-loader?limit=65000&mimetype=application/octet-stream&name=fonts/[name].[ext]'},
-                {test: /\.(eot)(\?.*$|$)/, use: 'url-loader?limit=65000&mimetype=application/vnd.ms-fontobject&name=fonts/[name].[ext]'},
+                {test: /\.(svg)(\?.*$|$)/, use: 'url-loader?limit=65000&mimetype=image/svg+xml&name=/fonts/[name].[ext]'},
+                {test: /\.(woff)(\?.*$|$)/, use: 'url-loader?limit=65000&mimetype=application/font-woff&name=/fonts/[name].[ext]'},
+                {test: /\.(woff2)(\?.*$|$)/, use: 'url-loader?limit=65000&mimetype=application/font-woff2&name=/fonts/[name].[ext]'},
+                {test: /\.([ot]tf)(\?.*$|$)/, use: 'url-loader?limit=65000&mimetype=application/octet-stream&name=/fonts/[name].[ext]'},
+                {test: /\.(eot)(\?.*$|$)/, use: 'url-loader?limit=65000&mimetype=application/vnd.ms-fontobject&name=/fonts/[name].[ext]'},
             ],
         },
         plugins: [
