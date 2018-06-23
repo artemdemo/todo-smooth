@@ -39,7 +39,11 @@ class Modal extends React.Component {
             width: rect.width,
             height: rect.height,
         });
-        window.requestAnimationFrame(() => {
+
+        // I used before `window.requestAnimationFrame`,
+        // but it's worked too fast and the first opening animation was buggy
+        // Therefore I switched to setTimeout
+        setTimeout(() => {
             this.setState({
                 animation: true,
             }, () => {
@@ -51,7 +55,7 @@ class Modal extends React.Component {
                     height: null,
                 });
             });
-        });
+        }, 16);
     }
 
     closeModal(props = this.props) {

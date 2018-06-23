@@ -102,7 +102,7 @@ class MainView extends React.Component {
         const { user, projects, tasks, currentProject, currentTask } = this.props;
         const today = moment();
         return (
-            <div>
+            <React.Fragment>
                 <MainMenu />
                 <UserGreeting user={user.data} />
                 <div className='main-view-projects'>
@@ -177,7 +177,7 @@ class MainView extends React.Component {
                     isSaving={currentTask.open}
                     open={currentProject.open}
                 />
-            </div>
+            </React.Fragment>
         );
     }
 }
