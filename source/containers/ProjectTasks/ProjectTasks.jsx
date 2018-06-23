@@ -37,22 +37,20 @@ class ProjectTasks extends React.Component {
 
         return (
             <div className={tasksClass}>
-                <div>
-                    <div className='project-tasks__name'>
-                        Tasks
-                    </div>
-                    <div className='project-tasks-list'>
-                        {tasks.map((task, index) => {
-                            const key = `project-tasks-list_item-${index}-${task.name.replace(/\s/g, '-')}`;
-                            return (
-                                <TaskItem
-                                    task={task}
-                                    onDelete={this.removeTask.bind(this)}
-                                    key={key}
-                                />
-                            )
-                        })}
-                    </div>
+                <div className='project-tasks__name'>
+                    Tasks
+                </div>
+                <div className='project-tasks-list'>
+                    {tasks.map((task, index) => {
+                        const key = `project-tasks-list_item-${index}-${task.name.replace(/\s/g, '-')}`;
+                        return (
+                            <TaskItem
+                                task={task}
+                                onDelete={this.removeTask.bind(this)}
+                                key={key}
+                            />
+                        )
+                    })}
                 </div>
             </div>
         );

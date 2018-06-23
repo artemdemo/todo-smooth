@@ -19,7 +19,7 @@ class ProjectHeader extends React.Component {
             'project-header-icon_open': open,
         });
         return (
-            <div>
+            <React.Fragment>
                 <div className={iconClass}>
                     <ProjectIcon
                         color={color}
@@ -33,7 +33,7 @@ class ProjectHeader extends React.Component {
                     color={color}
                     percentAmount={percentDone}
                 />
-            </div>
+            </React.Fragment>
         );
     }
 }

@@ -6,14 +6,14 @@ import './ProjectTitle.less';
 const ProjectTitle = (props) => {
     const { tasksAmount } = props;
     return (
-        <div>
+        <React.Fragment>
             <div className='project-title__amount'>
                 {tasksAmount} tasks
             </div>
             <div className='project-title__name'>
                 {props.children}
             </div>
-        </div>
+        </React.Fragment>
     );
 };
 

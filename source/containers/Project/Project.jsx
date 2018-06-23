@@ -39,7 +39,7 @@ class Project extends React.Component {
             0 :
             doneAmount / project.tasks.length;
         return (
-            <div>
+            <React.Fragment>
                 <ProjectHeader
                     color={project.color}
                     name={project.name}
@@ -52,7 +52,7 @@ class Project extends React.Component {
                     project={project}
                     open={currentProject.open}
                 />
-            </div>
+            </React.Fragment>
         );
     }
 }
